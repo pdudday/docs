@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Simply Trace - Fun Tracing App for Kids</title>
+    <meta name="description" content="Download Simply Trace - A fun and educational tracing app for kids. Trace animals, color creations, and earn reward cards. Available on iOS and Android.">
+
+    <!-- Open Graph for ad previews -->
+    <meta property="og:title" content="Simply Trace - Fun Tracing App for Kids">
+    <meta property="og:description" content="Trace animals, color creations, and earn reward cards. A safe, ad-free app for young children.">
+    <meta property="og:type" content="website">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(160deg, #1a1a2e, #16213e, #0f3460, #ff8c00);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        /* Subtle background animation */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,140,0,0.05) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 420px;
+            width: 100%;
+        }
+
+        .icon {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 52px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: white;
+            font-size: 2.4em;
+            font-weight: 700;
+            margin-bottom: 4px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            color: #ffcc80;
+            font-size: 1.1em;
+            font-weight: 400;
+            margin-bottom: 16px;
+        }
+
+        .tagline {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.15em;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .store-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+
+        .store-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 28px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 1.05em;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .store-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .store-btn:active {
+            transform: translateY(0);
+        }
+
+        .store-btn.apple {
+            background: white;
+            color: #1a1a1a;
+        }
+
+        .store-btn.google {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        .store-btn .store-icon {
+            font-size: 1.6em;
+            line-height: 1;
+        }
+
+        .store-btn .store-text {
+            text-align: left;
+        }
+
+        .store-btn .store-text small {
+            display: block;
+            font-size: 0.7em;
+            font-weight: 400;
+            opacity: 0.7;
+        }
+
+        .store-btn .store-text span {
+            display: block;
+        }
+
+        /* Highlighted button for detected platform */
+        .store-btn.highlighted {
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 4px 15px rgba(255,140,0,0.2); }
+            50% { box-shadow: 0 4px 30px rgba(255,140,0,0.5); }
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.85em;
+        }
+
+        .feature span {
+            display: block;
+            font-size: 1.5em;
+            margin-bottom: 4px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,140,0,0.2);
+            border: 1px solid rgba(255,140,0,0.4);
+            color: #ffcc80;
+            font-size: 0.75em;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 32px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.8em;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Redirect notice */
+        .redirect-notice {
+            display: none;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9em;
+            margin-bottom: 20px;
+            padding: 10px 16px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+        }
+
+        .redirect-notice.show {
+            display: block;
+        }
+
+        @media (max-width: 380px) {
+            h1 { font-size: 1.8em; }
+            .store-btn { padding: 14px 20px; }
+            .features { gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">&#9999;&#65039;</div>
+        <h1>Simply Trace</h1>
+        <p class="subtitle">Fun Tracing App for Kids</p>
+        <p class="tagline">Trace animals, color creations,<br>and earn reward cards!</p>
+
+        <span class="badge">Safe &bull; Ad-Free &bull; Kid-Friendly</span>
+
+        <div class="features">
+            <div class="feature"><span>&#128037;</span>100+ Animals</div>
+            <div class="feature"><span>&#127912;</span>Coloring Tools</div>
+            <div class="feature"><span>&#127942;</span>Reward Cards</div>
+        </div>
+
+        <p class="redirect-notice" id="redirect-notice">
+            Redirecting you to the store...
+        </p>
+
+        <div class="store-buttons" id="store-buttons">
+            <a href="https://apps.apple.com/in/app/simply-trace/id6771771784"
+               class="store-btn apple"
+               id="btn-apple">
+                <span class="store-icon">&#63743;</span>
+                <span class="store-text">
+                    <small>Download on the</small>
+                    <span>App Store</span>
+                </span>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.simplytrace.app"
+               class="store-btn google"
+               id="btn-google">
+                <span class="store-icon">&#9654;</span>
+                <span class="store-text">
+                    <small>Get it on</small>
+                    <span>Google Play</span>
+                </span>
+            </a>
+        </div>
+
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="support.html">Support</a>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            var ua = navigator.userAgent || navigator.vendor || window.opera;
+            var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+            var isAndroid = /android/i.test(ua);
+
+            var iosLink = 'https://apps.apple.com/in/app/simply-trace/id6771771784';
+            var androidLink = 'https://play.google.com/store/apps/details?id=com.simplytrace.app';
+
+            // Auto-redirect on mobile devices
+            if (isIOS) {
+                document.getElementById('redirect-notice').classList.add('show');
+                document.getElementById('btn-apple').classList.add('highlighted');
+                setTimeout(function() {
+                    window.location.href = iosLink;
+                }, 1500);
+            } else if (isAndroid) {
+                document.getElementById('redirect-notice').classList.add('show');
+                document.getElementById('btn-google').classList.add('highlighted');
+                setTimeout(function() {
+                    window.location.href = androidLink;
+                }, 1500);
+            }
+            // Desktop/unknown: show both buttons, no redirect
+        })();
+    </script>
+</body>
+</html>
